@@ -1,0 +1,113 @@
+<div class="lg:w-[40%]">
+  <!-- Sidebar (Hidden on smaller screens) -->
+  <nav
+    class="z-10 md:z-0 w-full bg-gray-200 lg:w-64 transform -translate-x-full transition-transform ease-in-out duration-300 lg:translate-x-0 min-h-screen fixed flex flex-col justify-between"
+  >
+    <div class="p-4">
+      <a href="{% url 'home' %}" class="text-2xl font-semibold">The Hat Store</a>
+    </div>
+
+{% if request.user.is_authenticated %}
+    <ul class="py-4">
+      <li>
+        <a
+          href="{% url 'home' %}"
+          class="block m-5 hover:underline underline-offset-2 decoration-4"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block m-5 hover:underline underline-offset-2 decoration-4"
+          >Favourites</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'my_account' %}"
+          class="block m-5 hover:underline underline-offset-2 decoration-4"
+          >Account</a
+        >
+      </li>
+    </ul>
+
+    {% else %}
+
+    <ul class="py-4">
+      <li>
+        <a
+          href="{% url 'home' %}"
+          class="block m-5 hover:underline underline-offset-2 decoration-4"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'user-login' %}"
+          class="block m-5 hover:underline underline-offset-2 decoration-4"
+          >Sign in</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'create_account' %}"
+          class="block m-5 hover:underline underline-offset-2 decoration-4"
+          >Sign up</a
+        >
+      </li>
+    </ul>
+    {% endif %}
+
+    <!-- Shopping cart and cart counter -->
+    <div class="bg-black text-white flex flex-row p-8">
+      <a
+        href="#"
+        class="m-1"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+          /></svg></a>
+      <p class="m-1">
+        0
+      </p>
+    </div>
+  </nav>
+
+</div>
+
+<!-- Open and Close Button for Mobile -->
+<button
+  class="lg:hidden fixed top-4 right-4 bg-gray-900 text-white p-2 rounded z-10"
+  id="toggle-sidebar"
+>
+  Menu
+</button>
+
+<script>
+  const toggleSidebarButton = document.getElementById("toggle-sidebar");
+  const sidebar = document.querySelector("nav");
+
+  toggleSidebarButton.addEventListener("click", () => {
+    if (sidebar.classList.contains("-translate-x-full")) {
+      sidebar.classList.remove("-translate-x-full");
+    } else {
+      sidebar.classList.add("-translate-x-full");
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && e.target !== toggleSidebarButton) {
+      sidebar.classList.add("-translate-x-full");
+    }
+  });
+</script>

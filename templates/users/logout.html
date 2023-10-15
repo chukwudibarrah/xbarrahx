@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% block title %}Log out{% endblock %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+<div class="w-screen h-screen flex items-center justify-center">
+  <div class="md:w-[50%] w-[80%]">
+    <div class="my-10 flex">
+        <h4 class="text-3xl">You've now signed out.</h4>
+    </div>
+    <a class="underline underline-offset-4 decoration-4" href="{% url 'user-login' %}">Sign in to your account</a>
+  </div>
+</div>
+
+{% endblock content %}

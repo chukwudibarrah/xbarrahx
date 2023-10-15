@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block title %}Create account{% endblock %}
+{% load tailwind_filters %}
+
+{% block content %}
+
+<div class="w-screen h-screen flex items-center justify-center">
+  <div class="md:w-[50%] w-[80%]">
+    <h3 class="my-2 text-2xl">Create account</h3>
+    <hr>
+    <form class="my-10" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="hover:cursor-pointer bg-gray-800 hover:bg-transparent hover:border-2 hover:border-solid hover:text-gray-800 text-white px-5 py-2 rounded my-10" type="submit" value="Create account">
+        <p>
+            Already have an account? <span><a class="underline underline-offset-4 decoration-4" href="{% url 'user-login' %}">Log in</a></span>
+        </p>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
